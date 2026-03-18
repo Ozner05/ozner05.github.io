@@ -2,7 +2,7 @@
 //  CONFIGURACIÓN SUPABASE — edita solo estas 2 líneas
 // ═══════════════════════════════════════════════
 const SUPABASE_URL = 'https://cnkqqmpcezmttqyoyxdo.supabase.co/';
-const SUPABASE_ANON_KEY = 'sb_publishable_xFdmLdoR0UCmkt_qEax3rQ_QLsUTbjc';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNua3FxbXBjZXptdHRxeW95eGRvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM4NjIwMTIsImV4cCI6MjA4OTQzODAxMn0.m4VdeSRXQ7QGx1BTqqJhbay2qI-DmEeiY8rDCfYvMP8';
 
 // WhatsApp del administrador (con código de país, sin + ni espacios)
 const ADMIN_WHATSAPP = '51981059295'; // Ejemplo Perú: 51 + número
