@@ -13,101 +13,67 @@ async function loadProducts() {
   if (error) { console.error('Error cargando productos:', error); return; }
   allProducts = data || [];
   renderFeaturedProducts();
-  renderAllProducts();
-  renderNewProducts();
+  renderAllProducts(allProducts);
 }
 
-// Tienda destacada (home) — primeros 2 productos
+// ── Tarjeta de producto reutilizable ──────────
+function productCardHTML(p) {
+  const stockClass = p.stock <= 0 ? 'stock-empty' : p.stock <= 3 ? 'stock-low' : 'stock-ok';
+  const stockText  = p.stock <= 0 ? 'Sin stock' : p.stock <= 3 ? `Últimas ${p.stock} unidades` : `En stock`;
+  const disabled   = p.stock <= 0 ? 'disabled' : '';
+
+  return `
+    <div class="col-6 col-md-4 col-lg-3">
+      <div class="product-card-new">
+        <img src="${p.image_url}" alt="${p.name}" loading="lazy" />
+        <div class="product-card-body-new">
+          <span class="stock-pill ${stockClass}">${stockText}</span>
+          <h5>${p.name}</h5>
+          <p class="prod-price">${p.price.toFixed(2)} €</p>
+          <p class="prod-desc">${p.description}</p>
+          <button class="btn-add-cart" onclick="addToCart('${p.id}')" ${disabled}>
+            <i class="bi bi-bag-plus"></i>
+            ${p.stock <= 0 ? 'Sin stock' : 'Añadir al carrito'}
+          </button>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ── Home: los 4 primeros productos ───────────
 function renderFeaturedProducts() {
   const container = document.getElementById('featured-products');
   if (!container) return;
 
-  const featured = allProducts.slice(0, 2);
-  container.innerHTML = featured.map(p => `
-    <div class="product-row">
-      <img src="${p.image_url}" alt="${p.name}" />
-      <div class="product-info">
-        <h4>${p.name}</h4>
-        <p class="product-price">${p.price.toFixed(2)} €</p>
-        <p>${p.description}</p>
-        <div class="qty-control">
-          <span>Cantidad</span>
-          <button class="qty-btn" onclick="changeStaticQty(this,-1)">—</button>
-          <span class="qty-num">1</span>
-          <button class="qty-btn" onclick="changeStaticQty(this,1)">+</button>
-        </div>
-        ${stockBadge(p.stock)}
-        <button class="btn-buy mt-2" onclick="addToCart('${p.id}')" ${p.stock <= 0 ? 'disabled style="opacity:.5;cursor:not-allowed"' : ''}>
-          ${p.stock <= 0 ? 'Sin stock' : 'Añadir al carrito'}
-        </button>
-      </div>
-    </div>
-  `).join('');
+  const featured = allProducts.slice(0, 4);
+  if (!featured.length) {
+    container.innerHTML = `<div class="col-12 text-center text-muted py-4">No hay productos disponibles aún.</div>`;
+    return;
+  }
+  container.innerHTML = featured.map(productCardHTML).join('');
 }
 
-// Tienda completa (página Productos)
-function renderAllProducts() {
+// ── Página Productos: todos, con filtro ───────
+function renderAllProducts(products) {
   const container = document.getElementById('all-products');
   if (!container) return;
 
-  container.innerHTML = allProducts.map(p => `
-    <div class="product-row">
-      <img src="${p.image_url}" alt="${p.name}" />
-      <div class="product-info">
-        <h4>${p.name}</h4>
-        <p class="product-price">${p.price.toFixed(2)} €</p>
-        <p>${p.description}</p>
-        <div class="qty-control">
-          <span>Cantidad</span>
-          <button class="qty-btn" onclick="changeStaticQty(this,-1)">—</button>
-          <span class="qty-num">1</span>
-          <button class="qty-btn" onclick="changeStaticQty(this,1)">+</button>
-        </div>
-        ${stockBadge(p.stock)}
-        <button class="btn-buy mt-2" onclick="addToCart('${p.id}')" ${p.stock <= 0 ? 'disabled style="opacity:.5;cursor:not-allowed"' : ''}>
-          ${p.stock <= 0 ? 'Sin stock' : 'Añadir al carrito'}
-        </button>
-      </div>
-    </div>
-  `).join('');
+  if (!products.length) {
+    container.innerHTML = `<div class="col-12 text-center text-muted py-5"><div style="font-size:2.5rem">🔍</div><p class="mt-2">No hay productos en esta categoría.</p></div>`;
+    return;
+  }
+  container.innerHTML = products.map(productCardHTML).join('');
 }
 
-// Grid de novedades (tarjetas con hover)
-function renderNewProducts() {
-  const container = document.getElementById('new-products-grid');
-  if (!container) return;
+function filterProducts(category, btn) {
+  document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
 
-  container.innerHTML = allProducts.map(p => `
-    <div class="col-md-4">
-      <div class="product-card position-relative">
-        <img src="${p.image_url}" alt="${p.name}" />
-        <div class="card-hover-overlay">
-          <button class="btn-comprar" onclick="addToCart('${p.id}')" ${p.stock <= 0 ? 'disabled' : ''}>
-            ${p.stock <= 0 ? 'SIN STOCK' : 'AÑADIR AL CARRITO'}
-          </button>
-        </div>
-        <div class="product-card-body">
-          <h5>${p.name}</h5>
-          <p class="price">${p.price.toFixed(2)} €</p>
-          ${stockBadge(p.stock)}
-        </div>
-      </div>
-    </div>
-  `).join('');
-}
+  const filtered = category === 'all'
+    ? allProducts
+    : allProducts.filter(p => p.category === category);
 
-function stockBadge(stock) {
-  if (stock <= 0)  return `<span class="badge bg-danger mb-2">Sin stock</span>`;
-  if (stock <= 3)  return `<span class="badge bg-warning text-dark mb-2">Últimas ${stock} unidades</span>`;
-  return `<span class="badge bg-success mb-2">En stock (${stock})</span>`;
-}
-
-function changeStaticQty(btn, delta) {
-  const row = btn.closest('.qty-control');
-  const el = row.querySelector('.qty-num');
-  let val = parseInt(el.textContent) + delta;
-  if (val < 1) val = 1;
-  el.textContent = val;
+  renderAllProducts(filtered);
 }
 
 document.addEventListener('DOMContentLoaded', loadProducts);
