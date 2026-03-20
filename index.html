@@ -1,304 +1,299 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>GyRTECH — Electrónica & Skincare</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
 
-<!-- ══════════════════════════════════
-     NAVBAR
-══════════════════════════════════ -->
+<!-- ══ NAVBAR ══════════════════════════════ -->
 <nav class="navbar navbar-expand-lg sticky-top">
   <div class="container">
-    <a class="navbar-brand" href="#" onclick="showPage('home'); return false;">
-      <span class="brand-g">G</span>y<span class="brand-r">R</span>TECH
+    <a class="navbar-brand" href="#" onclick="showPage('home');return false;">
+      <span class="logo-g">G</span>y<span class="logo-r">R</span>TECH
     </a>
     <div class="d-flex align-items-center gap-2 ms-auto">
       <button class="cart-btn" onclick="openCart()" aria-label="Carrito">
-        <i class="bi bi-bag-heart"></i>
+        <i class="bi bi-bag"></i>
         <span class="cart-badge" style="display:none">0</span>
       </button>
-      <button class="navbar-toggler border-0 ps-1" type="button"
-              data-bs-toggle="collapse" data-bs-target="#navMenu">
-        <i class="bi bi-list fs-4"></i>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <i class="bi bi-list fs-4" style="color:var(--ink)"></i>
       </button>
     </div>
     <div class="collapse navbar-collapse" id="navMenu">
       <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
-        <li class="nav-item"><a class="nav-link nav-pill active"   href="#" onclick="showPage('home');     return false;">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link nav-pill"          href="#" onclick="showPage('products'); return false;">Productos</a></li>
-        <li class="nav-item"><a class="nav-link nav-pill"          href="#" onclick="showPage('contact');  return false;">Contacto</a></li>
+        <li class="nav-item"><a class="nav-link nav-pill active" href="#" onclick="showPage('home');return false;">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link nav-pill" href="#" onclick="showPage('products');return false;">Productos</a></li>
+        <li class="nav-item"><a class="nav-link nav-pill" href="#" onclick="showPage('contact');return false;">Contacto</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
-<!-- ══════════════════════════════════
-     CART OVERLAY + SIDEBAR
-══════════════════════════════════ -->
+<!-- ══ CART ════════════════════════════════ -->
 <div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
 <div class="cart-sidebar" id="cart-sidebar">
   <div class="cart-header">
-    <h5><i class="bi bi-bag-heart me-2"></i>Tu carrito</h5>
+    <h5>Carrito <span class="cart-count-label" id="cart-count-label"></span></h5>
     <button onclick="closeCart()" class="cart-close-btn"><i class="bi bi-x-lg"></i></button>
   </div>
   <div class="cart-body" id="cart-items-list">
     <div class="cart-empty">
-      <div class="cart-empty-icon">🛍️</div>
+      <i class="bi bi-bag cart-empty-icon"></i>
       <p class="cart-empty-title">Tu carrito está vacío</p>
       <p class="cart-empty-sub">Añade productos para empezar</p>
     </div>
   </div>
   <div class="cart-footer">
     <div class="cart-total-row">
-      <span>Total</span>
+      <span>Total estimado</span>
       <strong><span id="cart-total">0.00</span> €</strong>
     </div>
-    <button class="btn-checkout" onclick="openCheckout()">
-      <i class="bi bi-lock-fill me-2"></i>Finalizar pedido
-    </button>
-    <button class="btn-keep-shopping" onclick="closeCart()">Seguir viendo productos</button>
+    <button class="btn-checkout" onclick="openCheckout()">Finalizar pedido</button>
+    <button class="btn-keep-shopping" onclick="closeCart()">Seguir comprando</button>
   </div>
 </div>
 
-<!-- ══════════════════════════════════
-     HOME
-══════════════════════════════════ -->
+<!-- ══ HOME ════════════════════════════════ -->
 <section id="page-home" class="page-section active">
 
   <!-- Hero -->
-  <div class="hero-section">
+  <div class="hero-wrap">
     <div class="container">
-      <div class="hero-inner">
-        <div class="hero-text-block">
-          <span class="hero-tag">✨ Tecnología & Belleza</span>
-          <h1 class="hero-title">Todo lo que<br/>necesitas,<br/><span class="hero-highlight">en un lugar</span></h1>
-          <p class="hero-desc">Equipos electrónicos y productos de skincare seleccionados para ti. Calidad garantizada y atención personalizada.</p>
-          <div class="hero-actions">
-            <button class="btn-primary-custom" onclick="showPage('products'); return false;">
-              Ver productos <i class="bi bi-arrow-right ms-1"></i>
-            </button>
-            <button class="btn-ghost-custom" onclick="document.getElementById('home-featured').scrollIntoView({behavior:'smooth'})">
-              Ver novedades
-            </button>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="hero-eyebrow">Tecnología · Belleza · Calidad</div>
+          <h1 class="hero-headline">Tu tienda de<br/><em>electrónica</em> y<br/><em>skincare</em></h1>
+          <p class="hero-body">Productos seleccionados con los más altos estándares de calidad. Atención personalizada y entrega coordinada directo contigo.</p>
+          <div class="hero-ctas">
+            <button class="btn-solid" onclick="showPage('products');return false;">Ver productos</button>
+            <button class="btn-outline-custom" onclick="document.getElementById('home-features').scrollIntoView({behavior:'smooth'})">Nuestras ventajas</button>
+          </div>
+          <div class="hero-stats">
+            <div class="hstat"><strong>100%</strong><span>Calidad garantizada</span></div>
+            <div class="hstat-div"></div>
+            <div class="hstat"><strong>Rápido</strong><span>Envío coordinado</span></div>
+            <div class="hstat-div"></div>
+            <div class="hstat"><strong>Directo</strong><span>Atención por WhatsApp</span></div>
           </div>
         </div>
-        <div class="hero-img-block">
-          <div class="hero-img-wrap">
-            <img src="https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=700&q=80" alt="GyRTECH productos"/>
-          </div>
-          <div class="hero-floating-card card-1">
-            <span class="fc-emoji">📦</span>
-            <div><strong>Envío rápido</strong><br/><small>A tu puerta</small></div>
-          </div>
-          <div class="hero-floating-card card-2">
-            <span class="fc-emoji">⭐</span>
-            <div><strong>Garantía</strong><br/><small>En todos los productos</small></div>
+        <div class="hero-visual">
+          <div class="hero-img-frame">
+            <img src="https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=800&q=80" alt="GyRTECH productos"/>
+            <div class="hero-badge badge-tl">
+              <i class="bi bi-shield-check"></i>
+              <span>Garantía incluida</span>
+            </div>
+            <div class="hero-badge badge-br">
+              <i class="bi bi-truck"></i>
+              <span>Envío disponible</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Categorías rápidas -->
-  <div class="container mb-5">
-    <div class="cat-pills">
-      <button class="cat-pill" onclick="showPage('products'); return false;"><span>📱</span> Electrónica</button>
-      <button class="cat-pill" onclick="showPage('products'); return false;"><span>✨</span> Skincare</button>
-      <button class="cat-pill" onclick="showPage('products'); return false;"><span>💄</span> Belleza</button>
-      <button class="cat-pill" onclick="showPage('products'); return false;"><span>🎧</span> Audio</button>
+  <!-- Categorías -->
+  <div class="container">
+    <div class="cat-row">
+      <button class="cat-chip" onclick="showPage('products');return false;"><i class="bi bi-phone"></i> Electrónica</button>
+      <button class="cat-chip" onclick="showPage('products');return false;"><i class="bi bi-stars"></i> Skincare</button>
+      <button class="cat-chip" onclick="showPage('products');return false;"><i class="bi bi-gem"></i> Belleza</button>
+      <button class="cat-chip" onclick="showPage('products');return false;"><i class="bi bi-headphones"></i> Audio</button>
     </div>
   </div>
 
   <!-- Productos destacados -->
-  <div class="container mb-5" id="home-featured">
-    <div class="section-head">
-      <h2 class="section-title-new">Lo más popular 🔥</h2>
-      <a href="#" class="see-all-link" onclick="showPage('products'); return false;">Ver todo →</a>
+  <div class="container section-gap" id="home-featured-wrap">
+    <div class="section-header">
+      <div>
+        <p class="section-eyebrow">Tienda</p>
+        <h2 class="section-title">Más populares</h2>
+      </div>
+      <a class="link-arrow" href="#" onclick="showPage('products');return false;">Ver todo <i class="bi bi-arrow-right"></i></a>
     </div>
     <div class="row g-3" id="featured-products">
-      <div class="col-12 text-center py-5">
-        <div class="spinner-border text-purple" role="status"></div>
-        <p class="mt-2 text-muted small">Cargando productos...</p>
-      </div>
+      <div class="col-12 text-center py-5"><div class="spinner-border spinner-c" role="status"></div></div>
     </div>
   </div>
 
-  <!-- Beneficios -->
-  <div class="benefits-strip">
+  <!-- Características -->
+  <div class="features-band" id="home-features">
     <div class="container">
-      <div class="benefits-grid">
-        <div class="benefit-item">
-          <span class="benefit-icon">🚚</span>
-          <div><strong>Envío a domicilio</strong><p>Coordinamos la entrega contigo</p></div>
+      <div class="text-center mb-5">
+        <p class="section-eyebrow" style="color:var(--gold)">Por qué elegirnos</p>
+        <h2 class="section-title" style="color:#fff">Características que nos<br/>hacen diferentes</h2>
+      </div>
+      <div class="features-grid">
+
+        <div class="feature-card-new">
+          <div class="fc-icon-wrap"><i class="bi bi-cpu"></i></div>
+          <h4>Tecnología avanzada</h4>
+          <p>Todos nuestros equipos electrónicos están seleccionados por su rendimiento excepcional y durabilidad a largo plazo.</p>
         </div>
-        <div class="benefit-item">
-          <span class="benefit-icon">🔒</span>
-          <div><strong>Pedido seguro</strong><p>Tu información está protegida</p></div>
+
+        <div class="feature-card-new">
+          <div class="fc-icon-wrap"><i class="bi bi-droplet"></i></div>
+          <h4>Ingredientes naturales</h4>
+          <p>Nuestros productos de skincare están formulados con ingredientes naturales que cuidan tu piel sin efectos secundarios.</p>
         </div>
-        <div class="benefit-item">
-          <span class="benefit-icon">💬</span>
-          <div><strong>Atención directa</strong><p>Te respondemos por WhatsApp</p></div>
+
+        <div class="feature-card-new">
+          <div class="fc-icon-wrap"><i class="bi bi-hand-thumbs-up"></i></div>
+          <h4>Diseño ergonómico</h4>
+          <p>Cada producto está pensado para integrarse fácilmente en tu vida diaria, con usabilidad y confort como prioridad.</p>
         </div>
-        <div class="benefit-item">
-          <span class="benefit-icon">✅</span>
-          <div><strong>Productos verificados</strong><p>Calidad garantizada</p></div>
+
+        <div class="feature-card-new">
+          <div class="fc-icon-wrap"><i class="bi bi-shield-check"></i></div>
+          <h4>Garantía en todo</h4>
+          <p>Todos los productos cuentan con garantía. Si algo no está bien, lo resolvemos sin complicaciones.</p>
         </div>
+
+        <div class="feature-card-new">
+          <div class="fc-icon-wrap"><i class="bi bi-whatsapp"></i></div>
+          <h4>Atención directa</h4>
+          <p>Te atendemos personalmente por WhatsApp. Sin bots, sin formularios largos. Respuesta rápida y humana.</p>
+        </div>
+
+        <div class="feature-card-new">
+          <div class="fc-icon-wrap"><i class="bi bi-truck"></i></div>
+          <h4>Envío coordinado</h4>
+          <p>Coordinamos la entrega directamente contigo, a la dirección que prefieras o con recojo en tienda.</p>
+        </div>
+
       </div>
     </div>
   </div>
 
-  <!-- Testimonios -->
-  <div class="container my-5">
-    <h2 class="section-title-new text-center mb-4">Lo que dicen nuestros clientes 💬</h2>
-    <div class="row g-3">
-      <div class="col-md-4">
-        <div class="review-card">
-          <div class="review-stars">⭐⭐⭐⭐⭐</div>
-          <p class="review-text">"Excelente atención y los productos llegaron en perfecto estado. Definitivamente volvería a comprar."</p>
-          <div class="review-author">
-            <div class="review-avatar">M</div>
-            <div><strong>María G.</strong><br/><small class="text-muted">Cliente verificada</small></div>
-          </div>
-        </div>
+  <!-- CTA banner -->
+  <div class="container section-gap">
+    <div class="cta-banner">
+      <div>
+        <h3>¿Tienes alguna duda?</h3>
+        <p>Escríbenos y te respondemos al momento por WhatsApp.</p>
       </div>
-      <div class="col-md-4">
-        <div class="review-card">
-          <div class="review-stars">⭐⭐⭐⭐⭐</div>
-          <p class="review-text">"El skincare transformó mi piel. Me asesoraron muy bien sobre cuál usar según mi tipo de piel."</p>
-          <div class="review-author">
-            <div class="review-avatar">L</div>
-            <div><strong>Lucía P.</strong><br/><small class="text-muted">Cliente verificada</small></div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="review-card">
-          <div class="review-stars">⭐⭐⭐⭐⭐</div>
-          <p class="review-text">"Los auriculares son increíbles. La calidad de sonido es mejor de lo que esperaba por ese precio."</p>
-          <div class="review-author">
-            <div class="review-avatar">C</div>
-            <div><strong>Carlos R.</strong><br/><small class="text-muted">Cliente verificado</small></div>
-          </div>
-        </div>
+      <div class="cta-banner-btns">
+        <a href="https://wa.me/51999999999" target="_blank" class="btn-whatsapp">
+          <i class="bi bi-whatsapp me-2"></i>Escribir por WhatsApp
+        </a>
+        <button class="btn-outline-custom" onclick="showPage('contact');return false;">Contacto</button>
       </div>
     </div>
   </div>
 
 </section>
 
-<!-- ══════════════════════════════════
-     PRODUCTS
-══════════════════════════════════ -->
+<!-- ══ PRODUCTS ═════════════════════════════ -->
 <section id="page-products" class="page-section">
   <div class="container py-4">
 
-    <div class="products-page-header">
-      <h2 class="section-title-new">Nuestros productos</h2>
-      <p class="text-muted">Tecnología y cuidado de la piel, todo en un solo lugar</p>
+    <div class="page-header-block">
+      <p class="section-eyebrow">Catálogo</p>
+      <h2 class="section-title">Nuestros productos</h2>
+      <p class="page-sub">Tecnología y cuidado de la piel, todo en un solo lugar</p>
     </div>
 
-    <!-- Filtros -->
-    <div class="filter-row mb-4">
-      <button class="filter-chip active" onclick="filterProducts('all', this)">Todos</button>
-      <button class="filter-chip" onclick="filterProducts('electronica', this)">📱 Electrónica</button>
-      <button class="filter-chip" onclick="filterProducts('skincare', this)">✨ Skincare</button>
-      <button class="filter-chip" onclick="filterProducts('belleza', this)">💄 Belleza</button>
+    <div class="filter-bar mb-4">
+      <button class="fchip active" onclick="filterProducts('all',this)">Todos</button>
+      <button class="fchip" onclick="filterProducts('electronica',this)"><i class="bi bi-phone"></i> Electrónica</button>
+      <button class="fchip" onclick="filterProducts('skincare',this)"><i class="bi bi-stars"></i> Skincare</button>
+      <button class="fchip" onclick="filterProducts('belleza',this)"><i class="bi bi-gem"></i> Belleza</button>
     </div>
 
-    <!-- Grid productos -->
     <div class="row g-3" id="all-products">
-      <div class="col-12 text-center py-5">
-        <div class="spinner-border text-purple" role="status"></div>
-        <p class="mt-2 text-muted small">Cargando productos...</p>
-      </div>
+      <div class="col-12 text-center py-5"><div class="spinner-border spinner-c" role="status"></div></div>
     </div>
 
     <!-- FAQ -->
-    <div class="faq-block mt-5 mb-3">
-      <h3 class="section-title-new text-center mb-4">Preguntas frecuentes ❓</h3>
-      <div class="accordion faq-accordion" id="faqAccordion">
-        <div class="faq-item">
-          <button class="faq-btn" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
-            ¿Cómo realizo un pedido? <i class="bi bi-chevron-down ms-auto"></i>
+    <div class="faq-section mt-5 pt-4">
+      <div class="text-center mb-4">
+        <p class="section-eyebrow">Soporte</p>
+        <h2 class="section-title">Preguntas frecuentes</h2>
+      </div>
+      <div class="faq-list" id="faqAccordion">
+        <div class="faq-row">
+          <button class="faq-q" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+            ¿Cómo realizo un pedido? <i class="bi bi-plus faq-icon"></i>
           </button>
-          <div id="faq1" class="collapse faq-body" data-bs-parent="#faqAccordion">
-            Agrega los productos al carrito, llena tus datos básicos y confirma. Recibirás un aviso por WhatsApp cuando tu pedido sea aprobado.
+          <div id="faq1" class="collapse faq-a" data-bs-parent="#faqAccordion">
+            Agrega los productos al carrito, llena tus datos (nombre y WhatsApp) y confirma. Te avisamos cuando sea aprobado.
           </div>
         </div>
-        <div class="faq-item">
-          <button class="faq-btn" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
-            ¿Hacen envíos a domicilio? <i class="bi bi-chevron-down ms-auto"></i>
+        <div class="faq-row">
+          <button class="faq-q" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+            ¿Hacen envíos a domicilio? <i class="bi bi-plus faq-icon"></i>
           </button>
-          <div id="faq2" class="collapse faq-body" data-bs-parent="#faqAccordion">
-            Sí, coordinamos el envío directamente contigo por WhatsApp tras aprobar tu pedido. También puedes recogerlo en tienda.
+          <div id="faq2" class="collapse faq-a" data-bs-parent="#faqAccordion">
+            Sí. Coordinamos el envío por WhatsApp tras aprobar tu pedido. También puedes pasar a recoger en tienda.
           </div>
         </div>
-        <div class="faq-item">
-          <button class="faq-btn" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
-            ¿Cuánto demoran en responder? <i class="bi bi-chevron-down ms-auto"></i>
+        <div class="faq-row">
+          <button class="faq-q" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+            ¿Cuánto demoran en responder? <i class="bi bi-plus faq-icon"></i>
           </button>
-          <div id="faq3" class="collapse faq-body" data-bs-parent="#faqAccordion">
-            Revisamos los pedidos durante el día. Normalmente respondemos en pocas horas. Si es urgente, escríbenos directo al WhatsApp.
+          <div id="faq3" class="collapse faq-a" data-bs-parent="#faqAccordion">
+            Revisamos pedidos durante el día. Normalmente respondemos en pocas horas. Para urgencias, escríbenos directo al WhatsApp.
           </div>
         </div>
-        <div class="faq-item">
-          <button class="faq-btn" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
-            ¿Los productos tienen garantía? <i class="bi bi-chevron-down ms-auto"></i>
+        <div class="faq-row">
+          <button class="faq-q" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+            ¿Los productos tienen garantía? <i class="bi bi-plus faq-icon"></i>
           </button>
-          <div id="faq4" class="collapse faq-body" data-bs-parent="#faqAccordion">
-            Todos los equipos electrónicos incluyen garantía de fabricante. Los skincares tienen garantía de satisfacción.
+          <div id="faq4" class="collapse faq-a" data-bs-parent="#faqAccordion">
+            Sí. Equipos electrónicos con garantía de fabricante. Skincare con garantía de satisfacción.
           </div>
         </div>
-        <div class="faq-item">
-          <button class="faq-btn" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
-            ¿Qué formas de pago aceptan? <i class="bi bi-chevron-down ms-auto"></i>
+        <div class="faq-row">
+          <button class="faq-q" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+            ¿Qué formas de pago aceptan? <i class="bi bi-plus faq-icon"></i>
           </button>
-          <div id="faq5" class="collapse faq-body" data-bs-parent="#faqAccordion">
-            Coordinamos el método de pago al confirmar el pedido: transferencia, Yape, Plin y efectivo en recojo.
+          <div id="faq5" class="collapse faq-a" data-bs-parent="#faqAccordion">
+            Coordinamos el pago al confirmar: transferencia, Yape, Plin y efectivo en recojo.
           </div>
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- ══════════════════════════════════
-     CONTACT
-══════════════════════════════════ -->
+<!-- ══ CONTACT ══════════════════════════════ -->
 <section id="page-contact" class="page-section">
-  <div class="container py-5" style="max-width:560px">
-    <h2 class="section-title-new text-center">Escríbenos 📩</h2>
-    <p class="text-muted text-center mb-4">¿Tienes dudas? Te respondemos rápido.</p>
-    <div class="contact-card">
+  <div class="container py-5" style="max-width:600px">
+    <div class="text-center mb-4">
+      <p class="section-eyebrow">Soporte</p>
+      <h2 class="section-title">Contáctanos</h2>
+      <p class="page-sub">¿Tienes dudas sobre algún producto o tu pedido? Te respondemos rápido.</p>
+    </div>
+    <div class="contact-card-new">
       <div class="mb-3">
-        <label class="form-label-custom">Tu nombre</label>
-        <input type="text" class="form-input-custom" placeholder="¿Cómo te llamas?"/>
+        <label class="flabel">Tu nombre</label>
+        <input type="text" class="finput" placeholder="¿Cómo te llamas?"/>
       </div>
       <div class="mb-3">
-        <label class="form-label-custom">WhatsApp o email</label>
-        <input type="text" class="form-input-custom" placeholder="Para poderte responder"/>
+        <label class="flabel">WhatsApp o email</label>
+        <input type="text" class="finput" placeholder="Para poderte responder"/>
       </div>
       <div class="mb-4">
-        <label class="form-label-custom">Tu mensaje</label>
-        <textarea class="form-input-custom" rows="4" placeholder="¿En qué te podemos ayudar?"></textarea>
+        <label class="flabel">Mensaje</label>
+        <textarea class="finput" rows="4" placeholder="¿En qué te podemos ayudar?"></textarea>
       </div>
-      <button class="btn-primary-custom w-100">Enviar mensaje <i class="bi bi-send ms-1"></i></button>
+      <button class="btn-solid w-100">Enviar mensaje</button>
     </div>
-    <div class="direct-contact mt-4">
-      <p class="text-center text-muted small mb-3">O contáctanos directamente</p>
+    <div class="contact-direct mt-4">
+      <p class="text-center text-muted small mb-3">O escríbenos directamente</p>
       <div class="d-flex gap-3 justify-content-center">
-        <a href="https://wa.me/51999999999" target="_blank" class="direct-btn whatsapp-btn">
+        <a href="https://wa.me/51999999999" target="_blank" class="dbtn wabtn">
           <i class="bi bi-whatsapp"></i> WhatsApp
         </a>
-        <a href="mailto:tuemail@gmail.com" class="direct-btn email-btn">
+        <a href="mailto:tuemail@gmail.com" class="dbtn mailbtn">
           <i class="bi bi-envelope"></i> Email
         </a>
       </div>
@@ -306,92 +301,72 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════
-     CHECKOUT
-══════════════════════════════════ -->
+<!-- ══ CHECKOUT ══════════════════════════════ -->
 <section id="page-checkout" class="page-section">
-  <div class="container py-4" style="max-width:700px">
+  <div class="container py-4" style="max-width:720px">
+    <button class="back-btn" onclick="showPage('products');return false;"><i class="bi bi-arrow-left me-1"></i>Volver</button>
 
-    <button class="back-btn" onclick="showPage('products'); return false;">
-      <i class="bi bi-arrow-left"></i> Volver
-    </button>
-
-    <div class="checkout-progress mb-4">
-      <div class="progress-step done"><span>✓</span><p>Carrito</p></div>
-      <div class="progress-line active"></div>
-      <div class="progress-step active"><span>2</span><p>Tus datos</p></div>
-      <div class="progress-line"></div>
-      <div class="progress-step"><span>3</span><p>Listo</p></div>
+    <div class="checkout-stepper mb-4">
+      <div class="cstep done"><span>✓</span><p>Carrito</p></div>
+      <div class="cline active"></div>
+      <div class="cstep active"><span>2</span><p>Tus datos</p></div>
+      <div class="cline"></div>
+      <div class="cstep"><span>3</span><p>Listo</p></div>
     </div>
 
-    <h2 class="section-title-new mb-1">Casi listo 🎉</h2>
-    <p class="text-muted mb-4">Solo necesitamos algunos datos para tu pedido</p>
+    <h2 class="section-title mb-1">Finalizar pedido</h2>
+    <p class="text-muted mb-4" style="font-size:.9rem">Completa tus datos y confirmamos contigo por WhatsApp.</p>
 
     <div class="row g-4">
       <div class="col-lg-7">
         <form id="checkout-form">
-
-          <div class="checkout-block mb-3">
-            <h6 class="block-title">👤 ¿Quién eres?</h6>
+          <div class="cblock mb-3">
+            <div class="cblock-title"><i class="bi bi-person me-2"></i>¿Quién eres?</div>
             <div class="row g-2">
-              <div class="col-6">
-                <input type="text" class="form-input-custom" id="f-name" placeholder="Nombre *" required/>
-              </div>
-              <div class="col-6">
-                <input type="text" class="form-input-custom" id="f-lastname" placeholder="Apellido *" required/>
-              </div>
+              <div class="col-6"><input type="text" class="finput" id="f-name" placeholder="Nombre *" required/></div>
+              <div class="col-6"><input type="text" class="finput" id="f-lastname" placeholder="Apellido *" required/></div>
             </div>
           </div>
-
-          <div class="checkout-block mb-3">
-            <h6 class="block-title">📞 ¿Cómo te contactamos?</h6>
-            <input type="tel" class="form-input-custom mb-2" id="f-phone" placeholder="WhatsApp (ej: 999 999 999) *" required/>
-            <input type="email" class="form-input-custom" id="f-email" placeholder="Email (opcional)"/>
-            <p class="hint-text"><i class="bi bi-whatsapp text-success me-1"></i>Te avisamos por WhatsApp cuando tu pedido esté listo</p>
+          <div class="cblock mb-3">
+            <div class="cblock-title"><i class="bi bi-phone me-2"></i>¿Cómo te contactamos?</div>
+            <input type="tel" class="finput mb-2" id="f-phone" placeholder="WhatsApp * (ej: 999 999 999)" required/>
+            <input type="email" class="finput" id="f-email" placeholder="Email (opcional)"/>
+            <p class="fhint"><i class="bi bi-whatsapp text-success me-1"></i>Te avisamos por WhatsApp cuando tu pedido esté aprobado</p>
           </div>
-
-          <div class="checkout-block mb-3">
-            <h6 class="block-title">📦 ¿Cómo quieres recibir tu pedido?</h6>
-            <div class="delivery-options">
-              <label class="delivery-option selected" id="opt-pickup">
+          <div class="cblock mb-3">
+            <div class="cblock-title"><i class="bi bi-box-seam me-2"></i>¿Cómo quieres recibirlo?</div>
+            <div class="delivery-opts">
+              <label class="dopt selected" id="opt-pickup">
                 <input type="radio" name="delivery" value="pickup" checked onchange="toggleDelivery(this)"/>
-                <span class="do-icon">🏪</span>
-                <div><strong>Recojo en tienda</strong><br/><small>Coordino el lugar contigo</small></div>
-                <span class="do-check"><i class="bi bi-check-circle-fill"></i></span>
+                <i class="bi bi-shop dopt-icon"></i>
+                <div><strong>Recojo en tienda</strong><br/><small>Coordino el lugar</small></div>
+                <i class="bi bi-check-circle-fill dopt-check"></i>
               </label>
-              <label class="delivery-option" id="opt-shipping">
+              <label class="dopt" id="opt-shipping">
                 <input type="radio" name="delivery" value="shipping" onchange="toggleDelivery(this)"/>
-                <span class="do-icon">🚚</span>
+                <i class="bi bi-truck dopt-icon"></i>
                 <div><strong>Envío a domicilio</strong><br/><small>Coordinamos la entrega</small></div>
-                <span class="do-check"><i class="bi bi-check-circle-fill"></i></span>
+                <i class="bi bi-check-circle-fill dopt-check"></i>
               </label>
             </div>
             <div id="address-row" style="display:none" class="mt-2">
-              <input type="text" class="form-input-custom" id="f-address" placeholder="Distrito, calle y referencia"/>
+              <input type="text" class="finput" id="f-address" placeholder="Distrito, calle y referencia"/>
             </div>
           </div>
-
-          <div class="checkout-block mb-4">
-            <h6 class="block-title">💬 ¿Algo más que debamos saber? <span class="text-muted fw-normal">(opcional)</span></h6>
-            <textarea class="form-input-custom" id="f-notes" rows="2" placeholder="Instrucciones especiales, horario de entrega..."></textarea>
+          <div class="cblock mb-4">
+            <div class="cblock-title"><i class="bi bi-chat-left-text me-2"></i>Notas adicionales <span style="font-weight:400;color:var(--muted)">(opcional)</span></div>
+            <textarea class="finput" id="f-notes" rows="2" placeholder="Horario de entrega, instrucciones especiales..."></textarea>
           </div>
-
-          <!-- Hidden checkbox for orders.js -->
           <input type="checkbox" id="f-shipping" style="display:none"/>
-
-          <button type="submit" class="btn-primary-custom w-100 py-3" id="submit-order-btn" style="font-size:1rem">
-            <i class="bi bi-bag-check me-2"></i>Confirmar pedido
+          <button type="submit" class="btn-solid w-100 py-3" id="submit-order-btn" style="font-size:1rem">
+            Confirmar pedido <i class="bi bi-arrow-right ms-1"></i>
           </button>
-          <p class="hint-text text-center mt-2">
-            <i class="bi bi-shield-check me-1"></i>No se realiza ningún cobro automático. Coordinamos el pago contigo.
-          </p>
+          <p class="fhint text-center mt-2"><i class="bi bi-lock me-1"></i>No se realiza ningún cobro automático. Coordinamos el pago contigo.</p>
         </form>
       </div>
-
-      <!-- Resumen -->
       <div class="col-lg-5">
-        <div class="order-summary-box">
-          <h6 class="block-title">🛍️ Tu pedido</h6>
+        <div class="order-box">
+          <div class="cblock-title mb-3"><i class="bi bi-receipt me-2"></i>Resumen del pedido</div>
           <div id="checkout-summary"></div>
         </div>
       </div>
@@ -399,41 +374,45 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════
-     CONFIRMATION
-══════════════════════════════════ -->
+<!-- ══ CONFIRMATION ══════════════════════════ -->
 <section id="page-confirmation" class="page-section">
-  <div class="container py-5 text-center" style="max-width:500px">
-    <div class="confirm-anim">🎉</div>
-    <h2 class="section-title-new mt-3">¡Pedido recibido!</h2>
+  <div class="container py-5 text-center" style="max-width:520px">
+    <div class="confirm-emoji">🎉</div>
+    <h2 class="section-title mt-3">¡Pedido recibido!</h2>
     <p class="text-muted mb-1">Gracias, <strong id="confirm-name"></strong></p>
-    <p class="text-muted small mb-4">N° de pedido: <span class="order-id-tag" id="confirm-order-id"></span></p>
-    <div class="confirm-steps-simple">
-      <div class="css-step active">✅ Pedido enviado</div>
-      <div class="css-arrow">↓</div>
-      <div class="css-step">⏳ Revisamos tu pedido</div>
-      <div class="css-arrow">↓</div>
-      <div class="css-step">📲 Te avisamos por WhatsApp</div>
+    <p class="text-muted small mb-4">N° de pedido: <span class="oid-tag" id="confirm-order-id"></span></p>
+    <div class="confirm-timeline">
+      <div class="ctline-step done"><span class="ctdot">✓</span><p>Pedido enviado</p></div>
+      <div class="ctline-bar"></div>
+      <div class="ctline-step"><span class="ctdot">2</span><p>Revisión</p></div>
+      <div class="ctline-bar"></div>
+      <div class="ctline-step"><span class="ctdot">3</span><p>Confirmado</p></div>
     </div>
     <div class="confirm-note mt-4">
-      <i class="bi bi-whatsapp me-2 text-success"></i>
-      Te contactaremos pronto al número que dejaste para confirmar y coordinar la entrega.
+      <i class="bi bi-whatsapp me-2"></i>
+      Te contactaremos al número que dejaste para confirmar y coordinar la entrega.
     </div>
-    <button class="btn-primary-custom mt-4" onclick="showPage('home'); return false;">Volver al inicio</button>
+    <button class="btn-solid mt-4" onclick="showPage('home');return false;">Volver al inicio</button>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ══ FOOTER ════════════════════════════════ -->
 <footer class="site-footer">
-  <div class="container text-center">
-    <p class="footer-brand"><span class="brand-g">G</span>y<span class="brand-r">R</span>TECH</p>
-    <p class="footer-sub">Electrónica & Skincare · Lima, Perú</p>
-    <div class="footer-links">
-      <a href="#" onclick="showPage('home');     return false;">Inicio</a>
-      <a href="#" onclick="showPage('products'); return false;">Productos</a>
-      <a href="#" onclick="showPage('contact');  return false;">Contacto</a>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <p class="footer-logo"><span class="logo-g">G</span>y<span class="logo-r">R</span>TECH</p>
+        <p class="footer-tagline">Electrónica & Skincare · Lima, Perú</p>
+      </div>
+      <div class="footer-links">
+        <a href="#" onclick="showPage('home');return false;">Inicio</a>
+        <a href="#" onclick="showPage('products');return false;">Productos</a>
+        <a href="#" onclick="showPage('contact');return false;">Contacto</a>
+      </div>
     </div>
-    <p class="footer-copy">©2026 GyRTECH — Todos los derechos reservados</p>
+    <div class="footer-bottom">
+      <span>©2026 GyRTECH — Todos los derechos reservados</span>
+    </div>
   </div>
 </footer>
 
@@ -455,13 +434,11 @@ function showPage(page) {
     if (l.textContent.trim() === map[page]) l.classList.add('active');
   });
   window.scrollTo({ top: 0, behavior: 'smooth' });
-  return false;
 }
-
 function toggleDelivery(radio) {
   document.getElementById('address-row').style.display = radio.value === 'shipping' ? 'block' : 'none';
-  document.querySelectorAll('.delivery-option').forEach(o => o.classList.remove('selected'));
-  radio.closest('.delivery-option').classList.add('selected');
+  document.querySelectorAll('.dopt').forEach(o => o.classList.remove('selected'));
+  radio.closest('.dopt').classList.add('selected');
   const cb = document.getElementById('f-shipping');
   if (cb) cb.checked = radio.value === 'shipping';
 }
