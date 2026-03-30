@@ -113,7 +113,7 @@ function notifyWhatsApp(order, orderId) {
     `━━━━━━━━━━━━━━━━━\n` +
     `${itemsList}\n` +
     `━━━━━━━━━━━━━━━━━\n` +
-    `💰 *Total: ${order.total_amount.toFixed(2)} €*\n\n` +
+    `💰 *Total: ${order.total_amount.toFixed(2)} S/.*\n\n` +
     `🔗 Panel admin: ${adminUrl}`
   );
 
@@ -157,12 +157,12 @@ function renderCheckoutSummary() {
         <p>${i.name}</p>
         <small>x${i.qty}</small>
       </div>
-      <strong style="color:var(--purple);white-space:nowrap">${(i.price * i.qty).toFixed(2)} €</strong>
+      <strong style="color:var(--purple);white-space:nowrap">${(i.price * i.qty).toFixed(2)} S/.</strong>
     </div>
   `).join('') + `
     <div class="checkout-total">
       <span>Total</span>
-      <strong>${sum.toFixed(2)} €</strong>
+      <strong>${sum.toFixed(2)} S/.</strong>
     </div>
     <p style="font-size:.75rem;color:#aaa;margin-top:8px;text-align:center">
       💳 Coordinamos el pago contigo por WhatsApp
