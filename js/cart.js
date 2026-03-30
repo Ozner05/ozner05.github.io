@@ -130,13 +130,13 @@ function renderCheckoutSummary() {
       <img src="${i.image}" alt="${i.name}" />
       <div>
         <p>${i.name}</p>
-        <small>x${i.qty} — ${(i.price * i.qty).toFixed(2)} €</small>
+        <small>x${i.qty} — ${(i.price * i.qty).toFixed(2)} S/.</small>
       </div>
     </div>
   `).join('') + `
     <div class="checkout-total">
       <span>Total</span>
-      <strong>${sum.toFixed(2)} €</strong>
+      <strong>${sum.toFixed(2)} S/.</strong>
     </div>`;
 }
 
